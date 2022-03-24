@@ -4,7 +4,7 @@ from bubble import *
 
 if __name__ == '__main__':
     pygame.init()
-    # TODO fix issues with large ranges
+    # TODO fix issues with large ranges, add quit button, incorporate more algorithms
     # Titles the game
     pygame.display.set_caption('Bubble Sort')
     clock = pygame.time.Clock()
