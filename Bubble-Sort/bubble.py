@@ -3,10 +3,15 @@ from random import shuffle as sh
 
 
 class Bubble:
-    def __init__(self, items, display, height, width):
+    def __init__(self, items, display, h, w, rw, dfs, dfbo, dft, dfbe):
         self.display = display
-        self.height = height
-        self.width = width
+        self.height = h
+        self.width = w
+        self.rect_width = rw
+        self.dis_from_side = dfs
+        self.dis_from_bottom = dfbo
+        self.dis_from_top = dft
+        self.dis_in_between = dfbe
 
         self.items = items
         self.sort()
@@ -33,15 +38,9 @@ class Bubble:
             if e.type == pygame.QUIT:
                 pygame.quit()
 
-        DIS_FROM_BOTTOM = 10
-        DIS_FROM_TOP = 70
-        DIS_FROM_SIDE = 20
-        DIS_IN_BETWEEN = 1
-
         self.display.fill((0, 0, 0))
-        rect_width = (self.width - (DIS_FROM_SIDE * 2) - len(self.items) * DIS_IN_BETWEEN) // len(self.items)
-        height_unit = (self.height - (DIS_FROM_BOTTOM + DIS_FROM_TOP)) // (max(self.items) + 1)
+        height_unit = (self.height - (self.dis_from_bottom + self.dis_from_top)) // (max(self.items) + 1)
         for item in self.items:
-            pygame.draw.rect(self.display, (255, 255, 255), [50 + (rect_width + DIS_IN_BETWEEN) * self.items.index(item), DIS_FROM_TOP + (max(self.items) - item) * height_unit, rect_width, (item + 1) * height_unit])
+            pygame.draw.rect(self.display, (255, 255, 255), [self.dis_from_side + (self.rect_width + self.dis_in_between) * self.items.index(item), self.dis_from_top + (max(self.items) - item) * height_unit, self.rect_width, (item + 1) * height_unit])
 
         pygame.display.update()
